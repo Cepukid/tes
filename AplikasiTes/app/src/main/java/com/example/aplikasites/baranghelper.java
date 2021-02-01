@@ -54,19 +54,19 @@ public class baranghelper {
                 null,
                 _ID + " ASC");
     }
-    public long insertbarang(ContentValues values) {
+    public static long insertbarang(ContentValues values) {
         return database.insert(DATABASE_Barang, null, values);
     }
     public long insertstok(ContentValues values) {
         return database.insert(DATABASE_Stok, null, values);
     }
-    public int updatebarang(String id, ContentValues values) {
+    public static int updatebarang(String id, ContentValues values) {
         return database.update(DATABASE_Barang, values, _ID + " = ?", new String[]{id});
     }
     public int updatestok(String id, ContentValues values) {
         return database.update(DATABASE_Stok, values, _ID + " = ?", new String[]{id});
     }
-    public int deletebarangById(String id) {
+    public static int deletebarangById(String id) {
         return database.delete(DATABASE_Barang, _ID + " = ?", new String[]{id});
     }
     public int deletestokById(String id) {

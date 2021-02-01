@@ -52,19 +52,22 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.BarangView
     }
     @Override
     public void onBindViewHolder(@NonNull BarangViewHolder holder, int position) {
-        holder.tvTitle.setText(listBarang.get(position).getTitle());
-        holder.tvDate.setText(listBarang.get(position).getDate());
-        holder.tvDescription.setText(listBarang.get(position).getDescription());
-        holder.cvNote.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            Intent intent = new Intent(activity, NoteAddUpdateActivity.class);
-            intent.putExtra(NoteAddUpdateActivity.EXTRA_POSITION, position1);
-            intent.putExtra(NoteAddUpdateActivity.EXTRA_NOTE, listNotes.get(position1));
-            activity.startActivityForResult(intent, NoteAddUpdateActivity.REQUEST_UPDATE);
+        holder.tvnama.setText(listBarang.get(position).getNamabarang());
+        holder.tvkode.setText(listBarang.get(position).getKodebarang());
+        holder.tvgambar.setText(listBarang.get(position).getGambarbarang());
+        holder.cvbarang.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(View view, int position1) {
+                Intent intent = new Intent(activity, TambahBarang.class);
+                intent.putExtra(TambahBarang.EXTRA_POSITION, position1);
+                intent.putExtra(TambahBarang.EXTRA_BARANG, listBarang.get(position1));
+                activity.startActivityForResult(intent, TambahBarang.REQUEST_UPDATE);
+            }
         }));
     }
     @Override
     public int getItemCount() {
-        return 0;
+        return listBarang.size();
     }
     static class BarangViewHolder extends RecyclerView.ViewHolder {
         TextView tvkode, tvnama, tvgambar;
@@ -75,7 +78,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.BarangView
             tvkode= itemView.findViewById(R.id.codebarang);
             tvnama= itemView.findViewById(R.id.namabarang);
             tvgambar= itemView.findViewById(R.id.gambarbarang);
-            cvbarang=itemView.findViewsById(R.id.cv_item_barang);
+            cvbarang=itemView.findViewById(R.id.cv_item_barang);
         }
     }
 }

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="tambah data"
         android:layout_margin="16dp"
-        android:id="@+id/fab_add"/>
+        android:id="@+id/tambahbarang"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notes"
