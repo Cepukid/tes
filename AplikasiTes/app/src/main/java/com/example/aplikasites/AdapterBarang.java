@@ -9,8 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.aplikasites.item.barang;
 
 public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.BarangViewHolder> {
@@ -54,7 +58,10 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.BarangView
     public void onBindViewHolder(@NonNull BarangViewHolder holder, int position) {
         holder.tvnama.setText(listBarang.get(position).getNamabarang());
         holder.tvkode.setText(listBarang.get(position).getKodebarang());
-        holder.tvgambar.setText(listBarang.get(position).getGambarbarang());
+        Glide.with(holder.itemView.getContext())
+                .load(listBarang.get(position).getGambarbarang())
+                .apply(new RequestOptions().override(55, 55))
+                .into(holder.tvgambar);
         holder.cvbarang.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
             @Override
             public void onItemClicked(View view, int position1) {
@@ -70,8 +77,9 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.BarangView
         return listBarang.size();
     }
     static class BarangViewHolder extends RecyclerView.ViewHolder {
-        TextView tvkode, tvnama, tvgambar;
+        TextView tvkode, tvnama;
         CardView cvbarang;
+        ImageView tvgambar;
 
         public BarangViewHolder(@NonNull View itemView) {
             super(itemView);

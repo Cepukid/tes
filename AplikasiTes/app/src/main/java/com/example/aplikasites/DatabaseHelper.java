@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
-            DatabaseContract.TABLE_Barang,
+            DatabaseContract.TABLE_Stok,
             DatabaseContract.StokColumns._ID,
             DatabaseContract.StokColumns.idBarang,
             DatabaseContract.StokColumns.TotalBarang,
